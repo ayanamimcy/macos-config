@@ -82,6 +82,18 @@
     :hook (java-mode . eglot-java-mode))
 
 (use-package! sis
+  :init
+
+  (defun sis-custom-set-ism-to-jp ()
+    ;; set sis-ism-lazyman-config to english and japanese
+    (interactive)
+    (setq sis-other-source "com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese"))
+
+  (defun sis-custom-set-ism-to-chi ()
+    ;; set sis-ism-lazyman-config to english and chinese
+    (interactive)
+    (setq sis-other-source "com.apple.inputmethod.SCIM.ITABC"))
+
   :config
   ;; For MacOS
   (sis-ism-lazyman-config
