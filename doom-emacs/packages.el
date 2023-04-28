@@ -53,3 +53,4 @@
 (package! ein)
 (package! eglot-java)
 (package! sis)
+(package! vulpea)

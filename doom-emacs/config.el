@@ -82,6 +82,11 @@
 (use-package! eglot-java
     :hook (java-mode . eglot-java-mode))
 
+;; 配置org-roam的性能到最高
+(setq org-roam-db-gc-threshold most-positive-fixnum)
+(org-roam-db-autosync-mode) ; 自动同步数据库
+
+
 (use-package! sis
   :init
 
