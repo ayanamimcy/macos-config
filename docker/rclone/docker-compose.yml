@@ -1,0 +1,48 @@
+version: '3'
+services:
+  rclone-webdav:
+    image: rclone/rclone
+    command:
+  # Tweak here rclone's command line switches:
+  #    - "--config"
+  #    - "/path/to/mounted/rclone.conf"
+  #    - "--verbose"
+      - "serve"
+      - "webdav"
+      - "Onedrive:/Org"
+      - "--htpasswd"
+      - "/root/.config/rclone/htpasswd"
+      - "--addr"
+      - ":6080"
+      - "--vfs-cache-mode"
+      - "full"
+      - "--cache-dir=/data/cache/0"
+      - "--header"
+      - "Access-Control-Allow-Origin: *"
+      - "--header"
+      - "Access-Control-Allow-Methods: GET,POST,OPTIONS,DELETE,PUT,PROPFIND"
+      - "--header"
+      - "Access-Control-Allow-Headers: Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization,X-CSRF-Token,Depth"
+      - "--header"
+      - "Access-Control-Allow-Credentials: true"
+  #    - "--read-only"
+  #    - "--no-modtime"
+  #    - "--no-checksum"
+  
+    restart: unless-stopped
+  
+    # Use host networking for simplicity.
+    # It also enables server's default listen on 127.0.0.1 to work safely.
+    #net: host
+  
+    # If you want to use port mapping instead of host networking,
+    # make sure to make rclone listen on 0.0.0.0.
+    ports:
+      - "6080:6080"
+  
+    # Here you have to map your host's rclone.conf directory to
+    # container's /root/.config/rclone/ dir (R/O).
+    # If you have any remote referencing local files, you have to
+    # map them here, too.
+    volumes:
+      - ~/.config/rclone/:/root/.config/rclone/
