@@ -82,10 +82,18 @@
 (use-package! eglot-java
     :hook (java-mode . eglot-java-mode))
 
-;; 配置org-roam的性能到最高
-(setq org-roam-db-gc-threshold most-positive-fixnum)
-(org-roam-db-autosync-mode) ; 自动同步数据库
+;; org模式相关的配置信息
+(use-package! org
+  :init
+  (add-hook 'org-mode-hook #'valign-mode))
 
+;; org-roam相关的配置
+(use-package! org-roam
+  :config
+  ;; 配置org-roam的性能到最高
+  (setq org-roam-db-gc-threshold most-positive-fixnum)
+  ;; 自动同步数据库
+  (org-roam-db-autosync-mode))
 
 (use-package! sis
   :init

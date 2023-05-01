@@ -47,7 +47,8 @@ end
 
 local maximizeApps = {
     --"/Applications/iTerm.app",
-    "/usr/local/Cellar/emacs-mac/emacs-28.2-mac-9.1/Emacs.app"
+    "/usr/local/Cellar/emacs-mac/emacs-28.2-mac-9.1/Emacs.app",
+    "/usr/local/Cellar/emacs-plus@30/30.0.50/Emacs.app"
     --"/System/Library/CoreServices/Finder.app",
 }
 

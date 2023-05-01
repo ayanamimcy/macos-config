@@ -54,3 +54,4 @@
 (package! eglot-java)
 (package! sis)
 (package! vulpea)
+(package! valign)
