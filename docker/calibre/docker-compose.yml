@@ -1,0 +1,27 @@
+version: '3'
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+    volumes:
+      - ~/calibre/data:/config
+      - calibre:/books
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+# since https://rclone.org/docker/
+# if plugin cannot enable since https://forum.rclone.org/t/docker-plugin-fail-to-start-reinstall/29871/8
+volumes:
+  calibre:
+    driver: rclone
+    driver_opts:
+      remote: 'Onedrive:/Org/calibre'
+      allow_other: 'true'
+      vfs_cache_mode: full
+      poll_interval: 0
