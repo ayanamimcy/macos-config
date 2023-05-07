@@ -55,3 +55,5 @@
 (package! sis)
 (package! vulpea)
 (package! valign)
+(unpin! org-roam)
+(package! org-roam-ui)

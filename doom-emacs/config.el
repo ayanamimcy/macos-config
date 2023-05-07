@@ -85,16 +85,34 @@
 ;; org模式相关的配置信息
 (use-package! org
   :init
-  (add-hook 'org-mode-hook #'valign-mode))
+  (add-hook 'org-mode-hook #'valoign-mode))
 
 ;; org-roam相关的配置
 (use-package! org-roam
+  :after org
   :config
   ;; 配置org-roam的性能到最高
   (setq org-roam-db-gc-threshold most-positive-fixnum)
   ;; 自动同步数据库
   (org-roam-db-autosync-mode))
 
+;; org-roam-ui 相关的配置
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
+;; smart-input-switch相关的配置信息
 (use-package! sis
   :init
 
@@ -115,6 +133,8 @@
        "com.apple.keylayout.ABC"
        ;; other langurage input method
        "com.apple.inputmethod.SCIM.ITABC")
+  (setq sis-do-set
+      (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
   ;; enable the /cursor color/ mode
   ;;(sis-global-cursor-color-mode t)
   ;; enable the /respect/ mode
