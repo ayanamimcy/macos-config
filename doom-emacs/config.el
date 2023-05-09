@@ -85,7 +85,7 @@
 ;; org模式相关的配置信息
 (use-package! org
   :init
-  (add-hook 'org-mode-hook #'valoign-mode))
+  (add-hook 'org-mode-hook #'valign-mode))
 
 ;; org-roam相关的配置
 (use-package! org-roam
