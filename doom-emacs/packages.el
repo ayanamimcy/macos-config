@@ -57,3 +57,6 @@
 (package! valign)
 (unpin! org-roam)
 (package! org-roam-ui)
+(package! async-await)
+(package! emacs-aichat
+  :recipe (:host github :repo "xhcoding/emacs-aichat"))

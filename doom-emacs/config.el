@@ -144,6 +144,9 @@
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t))
 
+;;配置bingai相关的配置信息
+(setq aichat-bingai-cookies-file "~/.config/bingcookie.json")
+
 ;;(add-hook! 'java-mode-hook 'eglot-java-mode)
 ;; 优化中文输入速度
 (setq inhibit-compacting-font-caches t)
