@@ -58,5 +58,6 @@
 (unpin! org-roam)
 (package! org-roam-ui)
 (package! async-await)
+(package! websocket)
 (package! emacs-aichat
   :recipe (:host github :repo "xhcoding/emacs-aichat"))

@@ -145,7 +145,15 @@
   (sis-global-inline-mode t))
 
 ;;配置bingai相关的配置信息
-(setq aichat-bingai-cookies-file "~/.config/bingcookie.json")
+(use-package! aichat
+  :config
+  ;;配置bingai的cookie信息
+  (setq aichat-bingai-cookies-file "~/.config/bingcookie.json")
+  (setq aichat-http-backend 'url)
+  ;;配置bingai的创建链接的信息
+  ;;(setq aichat-bingai--create-conversation-url "https://www.bing.com/turing/conversation/create")
+  )
+
 
 ;;(add-hook! 'java-mode-hook 'eglot-java-mode)
 ;; 优化中文输入速度
