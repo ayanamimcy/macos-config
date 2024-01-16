@@ -47,8 +47,9 @@ end
 
 local maximizeApps = {
     --"/Applications/iTerm.app",
-    "/usr/local/Cellar/emacs-mac/emacs-28.2-mac-9.1/Emacs.app",
-    "/usr/local/Cellar/emacs-plus@30/30.0.50/Emacs.app"
+    "/usr/local/Cellar/emacs-mac/emacs-29.1-mac-10.0/Emacs.app",
+    "/Applications/Emacs.app",
+    "/usr/local/opt/emacs-plus@29/Emacs.app"
     --"/System/Library/CoreServices/Finder.app",
 }
 
@@ -65,12 +66,18 @@ windowCreateFilter:subscribe(
 end)
 
 -- 处理电源监听事件，如果是电源就开启睿频 否则关闭睿频
-watcher = hs.battery.watcher.new(function ()
+function powerWatch()
     local powerSorce = hs.battery.powerSource()
     if powerSorce == "AC Power" then
-      os.execute("/usr/local/bin/voltageshift turbo 1")
+      os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift turbo 1")
     elseif powerSorce == "Battery Power" then
-      os.execute("/usr/local/bin/voltageshift turbo 0")
+      os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift turbo 0")
     end
-end)
+    os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift offset -100 -0 -0")
+    return
+end
+
+watcher = hs.battery.watcher.new(powerWatch)
 watcher:start()
+-- 定时任务
+hs.timer.new(30, powerWatch):start()

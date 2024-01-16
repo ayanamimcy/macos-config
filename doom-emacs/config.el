@@ -150,6 +150,7 @@
   ;;配置bingai的cookie信息
   (setq aichat-bingai-cookies-file "~/.config/bingcookie.json")
   (setq aichat-http-backend 'url)
+  (setq aichat-bingai-conversation-style 'creative)
   ;;配置bingai的创建链接的信息
   ;;(setq aichat-bingai--create-conversation-url "https://www.bing.com/turing/conversation/create")
   )
