@@ -73,7 +73,7 @@ function powerWatch()
     elseif powerSorce == "Battery Power" then
       os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift turbo 0")
     end
-    os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift offset -100 -0 -0")
+    -- os.execute("/Users/chenyangm/Library/CustomLibs/bin/voltageshift offset -50 -0 -0")
     return
 end
 

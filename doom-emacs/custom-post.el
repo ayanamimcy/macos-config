@@ -30,7 +30,6 @@
 
 ;; config smart-input-switch
 (use-package sis
-  :ensure t
   :init
   (defun sis-custom-set-ism-to-jp ()
    ;; set sis-ism-lazyman-config to english and japanese
@@ -59,6 +58,17 @@
   ;;(setq sis-do-set
   ;;      (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
   )
+;; config eglot-lsp-booster `https://github.com/jdtsmith/eglot-booster`
+(use-package eglot-booster
+  :init
+  (unless (package-installed-p 'eglot-booster)
+   (package-refresh-contents)
+   (package-vc-install "https://github.com/jdtsmith/eglot-booster"))
+  (eglot-booster-mode)
+  :after eglot)
+
+;; macrostep
+(use-package macrostep)
 
 (provide 'custom-post)
 ;;; custom-post.el ends here

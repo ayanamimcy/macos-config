@@ -123,6 +123,8 @@
  '(menu-bar-mode nil)
  '(org-agenda-files
    '("/Users/chenyangm/org/init.org" "/Users/chenyangm/org/leetcode.org" "/Users/chenyangm/org/project-todo.org" "/Users/chenyangm/org/todo.org"))
+ '(package-vc-selected-packages
+   '((eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")))
  '(size-indication-mode t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
