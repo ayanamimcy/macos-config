@@ -22,6 +22,17 @@
       tool-bar-mode nil
       scroll-bar-mode nil)
 
+;; start auto-revert-mode
+(auto-revert-mode)
+
+;; def prettier-runner
+(defun jester/prettier-js-file-1 ()
+  "Call prettier on current file."
+  (interactive)
+  (call-process-shell-command (format "node %s/node_modules/.bin/prettier --write %s"
+                        (project-root)
+                        (buffer-file-name))))
+
 ;; install load env var package
 (use-package load-env-vars
   :init
