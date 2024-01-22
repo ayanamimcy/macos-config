@@ -11,11 +11,11 @@
 ;; (setq centaur-socks-proxy "127.0.0.1:7890")    ; SOCKS proxy
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 ;; (setq centaur-icon nil)                        ; Display icons or not: t or nil
-(setq centaur-package-archives 'sjtu)         ; Package repo: melpa, emacs-cn, bfsu, netease, sjtu, tencent, tuna or ustc
+(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-cn, bfsu, netease, sjtu, tencent, tuna or ustc
 ;; (setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 ;; (setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
-;; (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
+(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
 ;; (setq centaur-lsp-format-on-save t)            ; Auto format buffers on save: t or nil
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode python-mode markdown-mode)) ; Ignore format on save for some languages
 ;; (setq centaur-tree-sitter nil)                 ; Enable tree-sitter or not: t or nil. Only available in 29+.
@@ -78,7 +78,7 @@
     ;;         return (progn
     ;;                  (setq face-font-rescale-alist `((,font . 1.3)))
     ;;                 (set-fontset-font t 'han (font-spec :family font))))))
-))
+    ))
 (centaur-setup-fonts)
 (add-hook 'window-setup-hook #'centaur-setup-fonts)
 (add-hook 'server-after-make-frame-hook #'centaur-setup-fonts)
@@ -124,7 +124,8 @@
  '(org-agenda-files
    '("/Users/chenyangm/org/init.org" "/Users/chenyangm/org/leetcode.org" "/Users/chenyangm/org/project-todo.org" "/Users/chenyangm/org/todo.org"))
  '(package-vc-selected-packages
-   '((eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")))
+   '((lsp-bridge :vc-backend Git :url "https://github.com/manateelazycat/lsp-bridge")
+     (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")))
  '(size-indication-mode t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
@@ -135,23 +136,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; Set org-roam-directory to org/roam
-(setq org-roam-directory (file-truename (format "%s/%s" centaur-org-directory "roam")))
-;; Disable tool, menu, and scrollbars. Doom is designed to be keyboard-centric,
-;; so these are just clutter (the scrollbar also impacts performance). Whats
-;; more, the menu bar exposes functionality that Doom doesn't endorse.
-;;
-;; I am intentionally not calling `menu-bar-mode', `tool-bar-mode', and
-;; `scroll-bar-mode' because they do extra and unnecessary work that can be more
-;; concisely and efficiently expressed with these six lines:
-(push '(menu-bar-lines . 0)   default-frame-alist)
-(push '(tool-bar-lines . 0)   default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
-;; And set these to nil so users don't have to toggle the modes twice to
-;; reactivate them.
-(setq menu-bar-mode nil
-      tool-bar-mode nil
-      scroll-bar-mode nil)
 
 ;;; custom.el ends here

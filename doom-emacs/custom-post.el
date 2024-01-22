@@ -23,15 +23,28 @@
       scroll-bar-mode nil)
 
 ;; start auto-revert-mode
-(auto-revert-mode)
+;;(auto-save-visited-mode)
+
+;; install lsp-bridge
+(use-package lsp-bridge
+  :init
+  (unless (package-installed-p 'lsp-bridge)
+    (package-refresh-contents)
+    (package-vc-install "https://github.com/manateelazycat/lsp-bridge")
+    (shell-command "/usr/bin/pip3 install epc orjson sexpdata six setuptools paramiko rapidfuzz"))
+  (global-lsp-bridge-mode)
+  :config
+  (setq lsp-bridge-python-command "/usr/bin/python3")
+  (add-hook 'lsp-bridge-mode-hook #'(lambda () (progn (global-corfu-mode -1)
+                                                  (highlight-indent-guides-mode -1)))))
 
 ;; def prettier-runner
 (defun jester/prettier-js-file-1 ()
   "Call prettier on current file."
   (interactive)
   (call-process-shell-command (format "node %s/node_modules/.bin/prettier --write %s"
-                        (project-root)
-                        (buffer-file-name))))
+                                      (project-root)
+                                      (buffer-file-name))))
 
 ;; install load env var package
 (use-package load-env-vars
